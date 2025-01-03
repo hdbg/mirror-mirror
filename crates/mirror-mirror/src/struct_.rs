@@ -74,7 +74,9 @@ impl StructValue {
 
     pub fn set_field(&mut self, name: impl Into<String>, value: impl Into<Value>) {
         let name = name.into();
-        self.field_names.push(name.clone());
+        if !self.field_names.contains(&name) {
+            self.field_names.push(name.clone());
+        }
         self.fields.insert(name, value.into());
     }
 }
